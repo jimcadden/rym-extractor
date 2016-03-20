@@ -7,8 +7,12 @@ class ChartSpider(Spider):
     name = "rym-chart"
     allowed_domains = ["googleusercontent.com"]
     start_urls = [
-    "http://webcache.googleusercontent.com/search?q=cache:9YX_RJYDDOEJ:rateyourmusic.com/customchart+&cd=1&hl=en&ct=clnk&gl=us"
+    "http://webcache.googleusercontent.com/search?q=cache:rateyourmusic.com/customchart+&cd=1&hl=en&ct=clnk&gl=us"
     ]
+
+    def __init__(self, *args, **kwargs): 
+        super(ChartSpider, self).__init__(*args, **kwargs) 
+        self.start_urls = [kwargs.get('start_url')] 
 
     def parse(self, response):
         # get listitems

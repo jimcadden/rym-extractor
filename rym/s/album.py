@@ -1,4 +1,4 @@
-from scrapy.spider import Spider
+from scrapy.spiders import Spider
 from scrapy.selector import Selector
 from rym.items import Album
 
@@ -6,7 +6,7 @@ class AlbumSpider(Spider):
     name = "rym-album"
     allowed_domains = ["googleusercontent.com"]
     start_urls = [
-        "http://webcache.googleusercontent.com/search?q=cache:n0BuC74CedoJ:rateyourmusic.com/release/album/radiohead/in_rainbows/+&cd=1&hl=en&ct=clnk&gl=us"
+        "http://webcache.googleusercontent.com/search?q=cache:lRJdp7maW-4J:rateyourmusic.com/release/album/the_beatles/revolver/+&cd=1&hl=en&ct=clnk&gl=us"
     ]
 
     def parse(self, response):
