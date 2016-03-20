@@ -20,29 +20,7 @@ class Album(Item):
     # issues
     # reviews 
 
-class Artist(Item):
-    albums_ep = Field()
-    albums_live = Field()
-    albums_single = Field()
-    albums_studio = Field()
-    formed = Field()
-    genres = Field()
-    members = Field()
-    name = Field()
-    url = Field()
-
-#class Chart(Item):
-#    length = Field()
-#    parameters = Field()
-
-class ChartRow(Item):
-    artist = Field()
-    artist_url = Field()
-    cover_art = Field()
-    genres= Field()
-    position = Field()
-    rating = Field()
-    title = Field()
+class ChartRow(Album):
+    chart_position = Field()
+    cover_art_icon = Field()
     title_url = Field()
-    votes = Field()
-    release_year = Field()

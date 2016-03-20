@@ -1,7 +1,7 @@
 from scrapy.crawler import CrawlerProcess
-from rym.s.album import AlbumSpider
+from rym.s.chart import ChartSpider
 
-spider = AlbumSpider()
+spider = ChartSpider()
 process = CrawlerProcess({
       'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
       })
