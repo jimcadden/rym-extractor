@@ -16,6 +16,9 @@ class Album(Item):
     title = Field()
     url = Field()
     votes = Field()
+    # TODO:
+    # issues
+    # reviews 
 
 class Artist(Item):
     albums_ep = Field()
@@ -28,6 +31,18 @@ class Artist(Item):
     name = Field()
     url = Field()
 
-class Chart(Item):
-    length = Field()
-    parameters = Field()
+#class Chart(Item):
+#    length = Field()
+#    parameters = Field()
+
+class ChartRow(Item):
+    artist = Field()
+    artist_url = Field()
+    cover_art = Field()
+    genres= Field()
+    position = Field()
+    rating = Field()
+    title = Field()
+    title_url = Field()
+    votes = Field()
+    release_year = Field()
