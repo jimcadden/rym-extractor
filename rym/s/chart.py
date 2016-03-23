@@ -1,7 +1,8 @@
 from scrapy.spiders import Spider
 from scrapy.selector import Selector
 from scrapy import Request
-from rym.items import ChartRow
+from rym.items import ChartRow, Album
+from rym.s.album import AlbumSpider
 
 class ChartSpider(Spider):
     name = "rym-chart"
@@ -37,25 +38,9 @@ class ChartSpider(Spider):
             yield request
 
     def parse_album(self, response):
+        album = AlbumSpider()
+        album_data = album.parse(response)
         item = response.meta['item']
-        sel = response.xpath('//*[contains(concat(" ", normalize-space(@class), " "), " section_main_info ")]')
-        # basic
-        album_info = sel.xpath('.//table[@class="album_info"]')
-        ranking = album_info.xpath('.//tr')[5].xpath('.//td')
-        # album info
-        item['artist'] = album_info.xpath('.//a[@class="artist"]/text()').extract_first().strip()
-        item['cover_art'] = sel.xpath('.//img[@class="coverart_img"]/@src').extract_first().strip()
-        item['descriptors'] = album_info.xpath('.//tr[@class="release_descriptors"]/td/meta/@content').extract()
-        item['genres'] = album_info.xpath('.//tr[@class="release_genres"]/td/div/span[@class="release_pri_genres"]/a/text()').extract()
-        item['media'] = album_info.xpath('.//tr')[1].xpath('.//td/text()').extract_first()
-        item['ranks'] =  ranking.xpath('.//b/text()').extract()
-        item['rating'] = album_info.xpath('.//tr')[4].xpath('.//td/span/span[@class="avg_rating"]/text()').extract_first().strip()
-        item['recorded'] = album_info.xpath('.//tr')[3].xpath('.//td/text()').extract_first().strip()
-        item['release_date'] = album_info.xpath('.//tr')[2].xpath('.//td/text()').extract_first().strip()
-        item['release_year'] = album_info.xpath('.//tr')[2].xpath('.//td/a/b/text()').extract_first().strip()
-        item['subgenres'] = album_info.xpath('.//tr[@class="release_genres"]/td/div/span[@class="release_sec_genres"]/a/text()').extract()
-        item['title'] = sel.xpath('.//div[@class="album_title"]/text()').extract_first().strip()
-        item['url'] = response.url
-        item['votes'] = album_info.xpath('.//tr')[4].xpath('.//td/span/span[@class="num_ratings"]/b/span/text()').extract()
-
+        for key,val in album_data.iteritems():
+          item[key] = val
         return item
