@@ -13,6 +13,7 @@ class Album(Item):
     recorded = Field()
     release_date = Field()
     release_year = Field()
+    release_DOY = Field()
     subgenres = Field()
     title = Field()
     url = Field()

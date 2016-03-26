@@ -1,6 +1,7 @@
 from scrapy.spiders import Spider
 from scrapy.selector import Selector
 from rym.items import Album
+import sys
 
 class AlbumSpider(Spider):
     name = "rym-album"
@@ -30,12 +31,15 @@ class AlbumSpider(Spider):
         item['title'] = sel.xpath('.//div[@class="album_title"]/text()').extract_first()
         item['url'] = response.url
         item['votes'] = sel.xpath('.//span[@class="num_ratings"]/b/span/text()').extract()
-        if len(album_info) == 8:
+        if len(album_info) < 10:
           item['recorded'] = "" 
           ranking = album_info[4].xpath('.//td').xpath('.//b/text()').extract()
-        else:
+        elif len(album_info) == 10:
           item['recorded'] = album_info[3].xpath('.//td/text()').extract_first()
           ranking = album_info[5].xpath('.//td').xpath('.//b/text()').extract()
+        else:
+          sys.exit()
+
         if len(ranking) > 1:
           item['rank_year'] = ranking[0]
           item['rank_overall'] = ranking[1] 
