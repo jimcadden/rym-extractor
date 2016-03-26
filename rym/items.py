@@ -1,6 +1,5 @@
 from scrapy.item import Item, Field
 
-
 class Album(Item):
     artist = Field()
     cover_art = Field()
@@ -18,9 +17,6 @@ class Album(Item):
     title = Field()
     url = Field()
     votes = Field()
-    # TODO:
-    # issues
-    # reviews 
 
 class ChartRow(Album):
     chart_position = Field()
