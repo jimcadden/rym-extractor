@@ -29,7 +29,7 @@ class ListSpider(Spider):
         for row in content:
             item = ChartRow()
             item['chart_position'] = row.xpath('.//td[@class="number"]/text()').extract_first()
-            item['title_url'] = row.xpath('.//td[@class="list_art"]/a/@href').extract_first()
+            item['title_url'] = row.xpath('.//td[@class="main_entry"]/h5/a/@href').extract_first()
             item['cover_art_icon'] = row.xpath('.//td[@class="list_art"]/a/img/@data-delayloadurl').extract_first()
             if item['title_url'] is not None:
               url = "http://webcache.googleusercontent.com/search?q=cache:rateyourmusic.com"+item['title_url'].strip()+"+&cd=2&hl=en&ct=clnk&gl=us"
