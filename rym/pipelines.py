@@ -21,11 +21,13 @@ class StringToInt(object):
   def process_item(self, item, spider):
     keys = ['rank_year','rank_overall','rating', 'release_year','votes', 'chart_position']
     for i, key in enumerate(keys):
-      if key in item and len(item[key]) > 0:
-        if key == 'rating':
-          item[key] = float(item[key]) 
-        else:
-          item[key] = int(item[key].replace(',', '')) 
+      if key in item: 
+        if item[key] is not None:
+          if len(item[key]) > 0:
+            if key == 'rating':
+              item[key] = float(item[key]) 
+            else:
+              item[key] = int(item[key].replace(',', '')) 
     return item
 
 class DayOfYear(object):
