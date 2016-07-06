@@ -7,7 +7,7 @@ import sys
 
 class ListSpider(Spider):
     name = "rym-list"
-    allowed_domains = ["googleusercontent.com"]
+    allowed_domains = ["googleusercontent.com", "bingj.com"]
     start_urls = [
         "http://webcache.googleusercontent.com/search?q=cache:rateyourmusic.com/list/amlabella/rolling_stones_500_greatest_albums_of_all_time__updated_2012_edition_/+&cd=2&hl=en&ct=clnk&gl=us"
     ]
